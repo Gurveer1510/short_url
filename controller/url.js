@@ -17,7 +17,11 @@ const generateNewShortUrl = async (req, res) => {
         visitHistory: []
     })
 
-    return res.json({
+    // return res.json({
+    //     id: shortId
+    // })
+
+    return res.render("home", {
         id: shortId
     })
 
@@ -74,8 +78,31 @@ const getAnalytics = async(req, res) => {
     })
 }
 
+const getAllUrls = async (req, res) => {
+    const allUrls = await  URL.find()
+    // return res.end(`
+    //     <html>
+    //         <head>
+    //             <title>Url shortner</title>
+    //         </head>
+    //         <body>
+    //             <h1>Url shortner</h1>
+    //             <ul>
+    //                 ${
+    //                     allUrls.map((url) => (
+    //                         `<li>${url.shortId} - ${url.redirectUrl} - ${url.visitHistory.length}</li>`
+    //                     ))
+    //                 }
+    //             </ul>
+    //         </body>
+    //     </html>
+    // `)
+    return res.render("home")
+}
+
 module.exports = {
     generateNewShortUrl,
     redirectToShortUrl,
-    getAnalytics
+    getAnalytics,
+    getAllUrls
 }

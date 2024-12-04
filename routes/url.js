@@ -2,10 +2,13 @@ const express = require("express")
 const {
     generateNewShortUrl,
     redirectToShortUrl,
-    getAnalytics
+    getAnalytics,
+    getAllUrls
 } = require("../controller/url")
 
 const router = express.Router()
+
+router.get("/", getAllUrls)
 
 router.post("/",generateNewShortUrl)
 

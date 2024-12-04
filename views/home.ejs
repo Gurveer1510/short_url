@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        h1 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+
+<body>
+    <h1>
+        Url Shortner
+    </h1>
+    <div>
+        <form method="post" action="/url">
+            <label>
+                Enter your url
+            </label><br>
+            <input name="url" type="text" placeholder="https://example.com" /><br>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    <div>
+        <% if (locals.id) { %>
+            <h4>Generated link</h4>
+            <p>localhost:8000/url/<%=locals.id%>
+            </p>
+            <% } %>
+    </div>
+    <div>
+        <% if (locals.allUrl) { %>
+            <ul>
+                <% locals.allUrl.forEach(url => { %>
+                    <li>localhost:8000/url/<%= url.shortId %> - <%= url.redirectUrl %> - <%= url.visitHistory.length %></li>
+                <% }) %> <!-- This closing tag is important -->
+            </ul>
+        <% } %>
+    </div>
+    
+</body>
+
+</html>
